@@ -12,10 +12,6 @@ module.exports = {
                 auth: {
                     user: `${authen?.email}`,
                     pass: `${authen?.password}`
-                },
-                tls: {
-                    // must provide server name, otherwise TLS certificate check will fail
-                    servername: "https://mailer.bigworkthailand.com/"
                 }
             });
               
@@ -28,7 +24,7 @@ module.exports = {
                 throw err;
             });
 
-            return res.json({ 
+            return res.status(200).json({ 
                 code: 200, 
                 status: 'success', 
                 message: `${result?.response}`,
