@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 module.exports = {
     sendMail: async(req, res) => {
         try {
-            const { authen, from, to, subject, html } = req.body;
+            const { authen, from, to, cc_to, subject, html } = req.body;
 
             const transporter = nodemailer.createTransport({
                 host: `${authen?.host}`,
@@ -18,6 +18,7 @@ module.exports = {
             const result = await transporter.sendMail({
                 from: `${from}`,
                 to: `${to}`,
+                cc: `${cc_to}`,
                 subject: `${subject}`,
                 html: `${html}`
             }).catch((err)=>{
